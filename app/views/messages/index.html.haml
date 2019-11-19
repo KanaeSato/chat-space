@@ -1,25 +1,26 @@
 .wrapper
-  = render "shared/side_bar"
-  .chat-main
-    .main-header
-      .main-header__left-box
-        %h2.main-header__left-box__current-group
-          = @group.name
-        %ul.main-header__left-box__member-list
+  = render 'shared/side_bar'
+
+  .chat
+    .header
+      .left-header
+        .left-header__title
+          = @group.name 
+        %ul.left-header__members
           Member：
           %li.member
-            - @group.group_users.each do |group_user|
+            - @group.group_users.each do |group_user| 
               = group_user.user.name
-      .main-header__edit-btn
-        = link_to edit_group_path(@group.id) do
-          Edit
+      .right-header
+        .right-header__button
+          = link_to 'Edit', edit_group_path(@group), data: {"turbolinks" => false}
     .messages
       = render @messages
     .form
-      = form_for [@group, @message] do |f|
-        = f.text_field :content, class: 'form__message', id: 'new_message', placeholder: 'type a message'
+      = form_for [@group, @message] do |f| 
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
         .form__mask
           = f.label :image, class: 'form__mask__image' do
-            = fa_icon 'image', class: 'icon'
+            = icon('fas', 'image', class: 'icon')
             = f.file_field :image, class: 'hidden'
         = f.submit 'Send', class: 'form__submit'
