@@ -16,8 +16,8 @@ $(function(){
            <p class="lower-message__content">
              ${message.content}
            </p>
+           ${image}
          </div>
-         <img src=${message.image.url} >
        </div>`
      return html;
    } else {
@@ -84,8 +84,8 @@ $(function(){
             <p class="lower-message__content">
               ${message.content}
             </p>
+            ${image}
           </div>
-          <img src=${message.image.url} >
         </div>`
       return html;
     } else {
